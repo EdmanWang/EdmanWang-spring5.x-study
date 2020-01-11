@@ -1,0 +1,17 @@
+*.class
+*.classpath
+*.iml
+*.settings
+*.project
+*.log
+*.log.gz
+*.tmp
+
+**/target
+**/.idea
+**/.vscode
+**/.metadata
+*/.springBeans
+/.idea/workspace.xml
+/.idea/*.xml
+/.idea/workspace.xml

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/aop
+        https://www.springframework.org/schema/aop/spring-aop.xsd">
+
+
+    <bean id="beforeLog" class="com.wgx.xmlAop.log.BeforeLog"></bean>
+    <bean id="afterLog" class="com.wgx.xmlAop.log.AfterLog"></bean>
+    <bean id="userService" class="com.wgx.xmlAop.userService.UserServiceImpl"></bean>
+
+
+    <!--<aop:config>-->
+        <!--<aop:pointcut id="pointcut" expression="execution(* com.wgx.xmlAop.userService.UserServiceImpl.*(..))"></aop:pointcut>-->
+        <!--<aop:advisor advice-ref="beforeLog" pointcut-ref="pointcut"></aop:advisor>-->
+        <!--<aop:advisor advice-ref="afterLog" pointcut-ref="pointcut"></aop:advisor>-->
+    <!--</aop:config>-->
+
+    <bean id="log" class="com.wgx.xmlAop.log.Log"></bean>
+
+    <aop:config>
+        <aop:aspect ref="log">
+            <aop:pointcut id="point" expression="execution(* com.wgx.xmlAop.userService.UserServiceImpl.*(..))"></aop:pointcut>
+            <aop:before method="before" pointcut-ref="point"></aop:before>
+            <aop:after method="after" pointcut-ref="point"></aop:after>
+        </aop:aspect>
+    </aop:config>
+
+</beans>
